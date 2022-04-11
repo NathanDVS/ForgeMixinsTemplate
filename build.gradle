@@ -48,7 +48,6 @@ mixin {
 }
 
 jar {
-
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
     manifest.attributes(
