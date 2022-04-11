@@ -36,8 +36,8 @@ compileJava {
 }
 
 version = "1.8.9"
-group = "dev.surge"
-archivesBaseName = "Surge"
+group = "net.example"
+archivesBaseName = "ExampleMod"
 
 minecraft {
     version = project.forgeVersion
@@ -86,7 +86,7 @@ processResources {
 
 mixin {
     defaultObfuscationEnv notch
-    add sourceSets.main, "mixins.surge.refmap.json"
+    add sourceSets.main, "mixins.example.refmap.json"
 }
 
 jar {
@@ -104,8 +104,8 @@ jar {
             "FMLCorePluginContainsFMLMod": "true",
             "ForceLoadAsMod": "true",
             "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
-            "MixinConfigs": "mixins.surge.json",
-            "FMLCorePlugin": "dev.surge.CorePlugin"
+            "MixinConfigs": "mixins.example.json",
+            "FMLCorePlugin": "net.example.CorePlugin"
     )
 }
 
