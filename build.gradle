@@ -43,7 +43,9 @@ minecraft {
     version = project.forgeVersion
     runDir = "run"
     mappings = project.mcpVersion
-    makeObfSourceJar = false
+    makeObfSourceJar = false    
+    clientRunArgs += "--tweakClass org.spongepowered.asm.launch.MixinTweaker"
+    clientRunArgs += "--mixin mixins.example.json"
 }
 
 reobf {
