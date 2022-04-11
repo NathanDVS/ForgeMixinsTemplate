@@ -2,7 +2,7 @@ package net.examplemod;
 
 import net.minecraftforge.fml.common.Mod;
 
-@Mod(modid = Tweaker.MODID, name = Tweaker.NAME, version = Tweaker.VERSION)
+@Mod(modid = ExampleMod.MODID, name = ExampleMod.NAME, version = ExampleMod.VERSION)
 public class ExampleMod {
 
     static final String MODID = "examplemod";
