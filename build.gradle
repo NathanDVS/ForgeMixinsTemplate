@@ -2,116 +2,6 @@ buildscript {
     repositories {
         mavenCentral()
         
-        maven {
-            url = "https://files.minecraftforge.net/maven"
-        }
-        
-        maven {
-            url = "https://repo.spongepowered.org/maven"
-        }
-        
-        maven {
-            url = 'https://jitpack.io'
-        }
-    }
-    
-    dependencies {
-        classpath('net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT')
-        classpath('org.spongepowered:mixingradle:0.6-SNAPSHOT')
-    }
-}
-
-plugins {
-    id 'java'
-}
-
-apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: 'org.spongepowered.mixin'
-
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
-
-compileJava {
-    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
-    options.encoding = 'UTF-8'
-}
-
-group 'net.examplemod'
-version '1.8.9'
-archivesBaseName = 'Example'
-
-minecraft {
-    version = project.forgeVersion
-    mappings = project.mcpVersion
-    runDir = project.file('run')    
-    makeObfSourceJar = false
-    clientRunArgs += "--tweakClass org.spongepowered.asm.launch.MixinTweaker"
-    clientRunArgs += "--mixin mixins.example.json"
-}
-
-repositories {
-    mavenCentral()
-    maven { url "https://repo.spongepowered.org/repository/maven-public/" }
-}
-
-configurations {
-    embed
-    compile.extendsFrom(embed)
-}
-
-dependencies {
-    embed('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
-        exclude module: 'guava'
-        exclude module: 'commons-io'
-        exclude module: 'gson'
-    }
-
-    annotationProcessor("org.spongepowered:mixin:0.7.11-SNAPSHOT")
-}
-
-mixin {
-    add sourceSets.main, "mixins.surge.refmap.json"
-}
-
-jar {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    manifest.attributes(
-            "FMLCorePluginContainsFMLMod": true,
-            "ForceLoadAsMod": true,
-            "MixinConfigs": "mixins.example.json",
-            "ModSide": "CLIENT",
-            "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
-            "TweakOrder": "0",
-    )
-
-    from {
-        configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-}
-
-processResources {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-        
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-}
-
-sourceSets {
-    main { output.resourcesDir = java.outputDir }
-}
-
-
-buildscript {
-    repositories {
-        mavenCentral()
-        
         maven { url 'https://repo.spongepowered.org/maven' }
         maven { url 'https://files.minecraftforge.net/maven' }
     }
@@ -125,9 +15,9 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.12.3'
-group = 'me.peanut.hydrogen'
-archivesBaseName = 'hydrogen'
+group 'net.examplemod'
+version '1.0.0'
+archivesBaseName = 'ExampleMod'
 
 sourceCompatibility = targetCompatibility = '1.8'
 
@@ -137,11 +27,10 @@ compileJava {
 }
 
 minecraft {
-    version = '1.8.9-11.15.1.1722'
+    version = project.forgeVersion
+    mappings = project.mcpVersion
     runDir = 'run'
-    mappings = 'stable_22'
     makeObfSourceJar = false
-    clientJvmArgs += '-Dfml.coreMods.load=me.peanut.hydrogen.injection.MixinLoader'
 }
 
 mixin {
@@ -168,8 +57,6 @@ configurations {
 
 dependencies {
     embed('org.spongepowered:mixin:0.6.4-SNAPSHOT') {
-
-        // Excludes unneeded stuff.
         exclude module: 'gson'
         exclude module: 'guava'
         exclude module: 'jarjar'
@@ -179,6 +66,7 @@ dependencies {
         exclude module: 'asm-commons'
         exclude module: 'slf4j-api'
     }
+    
     implementation 'org.jetbrains:annotations:22.0.0'
 }
 
@@ -208,6 +96,11 @@ jar {
     }
     
     manifest.attributes(
-    
+            "FMLCorePluginContainsFMLMod": true,
+            "ForceLoadAsMod": true,
+            "MixinConfigs": "mixins.example.json",
+            "ModSide": "CLIENT",
+            "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
+            "TweakOrder": "0",
     )
 }
