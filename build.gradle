@@ -38,7 +38,7 @@ mixin {
     defaultObfuscationEnv searge 
     sourceSets {
         main {
-            ext.refMap = 'mixins.hydrogen.refmap.json'
+            ext.refMap = 'mixins.example.refmap.json'
         }
     }
 }
