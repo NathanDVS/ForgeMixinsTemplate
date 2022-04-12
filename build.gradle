@@ -31,6 +31,7 @@ minecraft {
     mappings = project.mcpVersion
     runDir = 'run'
     makeObfSourceJar = false
+    clientRunArgs += ["--tweakClass org.spongepowered.asm.launch.MixinTweaker", "--mixin mixins.example.json"]
 }
 
 mixin {
