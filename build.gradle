@@ -8,6 +8,7 @@ buildscript {
     
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+        // classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
     }
 }
@@ -57,15 +58,10 @@ configurations {
 }
 
 dependencies {
-    embed('org.spongepowered:mixin:0.6.4-SNAPSHOT') {
-        exclude module: 'gson'
+    embed('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
         exclude module: 'guava'
-        exclude module: 'jarjar'
-        exclude module: 'commons-codec'
         exclude module: 'commons-io'
-        exclude module: 'launchwrapper'
-        exclude module: 'asm-commons'
-        exclude module: 'slf4j-api'
+        exclude module: 'gson'
     }
     
     implementation 'org.jetbrains:annotations:22.0.0'
