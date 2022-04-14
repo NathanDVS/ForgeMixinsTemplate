@@ -92,8 +92,8 @@ jar {
     }
     
     manifest.attributes(
-            "FMLCorePluginContainsFMLMod": true,
-            "ForceLoadAsMod": true,
+            "FMLCorePluginContainsFMLMod": "true",
+            "ForceLoadAsMod": "true",
             "MixinConfigs": "mixins.example.json",
             "ModSide": "CLIENT",
             "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
